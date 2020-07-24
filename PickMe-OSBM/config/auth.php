@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'admin',
     ],
 
     /*
@@ -38,13 +38,16 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admin',
         ],
-
+        'student' => [
+            'driver' => 'passport',
+            'provider' => 'student'
+        ],
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+            // 'driver' => 'token',
+            // 'provider' => 'users',
+            // 'hash' => false,
         ],
     ],
 
@@ -66,9 +69,13 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'admin' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Admin::class,
+        ],
+        'student' => [
+            'driver' => 'eloquent',
+            'model' => App\Student::class,
         ],
 
         // 'users' => [
