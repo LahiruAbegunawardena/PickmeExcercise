@@ -17,8 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
+Auth::routes(['register' => false]);
 
+Route::middleware('auth:web')->group(function () {
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin/home', 'Admin\AdminController@index')->name('adminHome');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/admin/students', 'Admin\StudentController@index')->name('studentMgt');
+    Route::get('/admin/student/{student_id}/verify', 'Admin\StudentController@verifyStudent');
+    Route::get('/admin/student/{student_id}/delete', 'Admin\StudentController@deleteStudent');
+    Route::get('/admin/student/{student_id}/enroll', 'Admin\StudentController@enrollStudentToCourses');
+    Route::post('/admin/student/{student_id}/complete-enroll/{course_id}', 'Admin\StudentController@completeEnrollment');
+
+    Route::get('/admin/courses', 'Admin\CourseController@index')->name('courseMgt');
+    Route::get('/admin/courses/create', 'Admin\CourseController@create')->name('courseCreate');
+    Route::post('/admin/courses/store', 'Admin\CourseController@store')->name('courseStore');
+});

@@ -16,9 +16,9 @@ class CreatePaymentTable extends Migration
         Schema::create('payment', function (Blueprint $table) {
             $table->id();
             $table->integer('enrollment_id');
-            $table->integer('collected_by');
-            $table->tinyInteger('is_paid');
-            $table->datetime('paid_date');
+            $table->integer('collected_by')->nullable();
+            $table->tinyInteger('is_paid')->default(0);
+            $table->datetime('paid_date')->nullable();
             $table->timestamps();
         });
     }

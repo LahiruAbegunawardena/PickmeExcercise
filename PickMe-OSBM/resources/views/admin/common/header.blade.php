@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ trans('global.site_title') }}</title>
+    <title>PickMe - OSBM</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,8 +25,27 @@
 
         @include('admin.common.sidebar')
 
+
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+
+            @if ($message = Session::get('success'))
+                <script>
+                    $(function () {
+                        successMessage('{{ $message }}');
+                    });
+                </script>
+
+            @endif
+            @if ($message = Session::get('info'))
+                <script>
+                    $(function () {
+                        errorMessage('{{ $message }}');
+                    });
+                </script>
+            @endif
+
             @yield('content')
         </div>
 

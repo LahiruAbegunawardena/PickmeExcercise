@@ -76,7 +76,7 @@ class LoginController extends Controller
                     $adminToken = Auth::user()->createToken('adminToken')->accessToken;
                     $request->session()->put('adminToken', $adminToken);            
                     $success['adminToken'] = $adminToken;
-                    return redirect()->intended('admin/home');
+                    return redirect()->intended('admin/students');
                    
                 } else {
                     return response()->json([

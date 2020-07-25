@@ -17,7 +17,15 @@
           <img src="{{ asset('admin_lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{ route('logout') }}" class="d-block">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a>
+          <a class="d-block" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                                    </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+          {{-- <a href="{{ route('logout') }}" class="d-block">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a> --}}
         </div>
       </div>
 
@@ -45,11 +53,20 @@
             </ul>
           </li> --}}
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{route('studentMgt')}}" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
+                Student Management
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{route('courseMgt')}}" class="nav-link">
+              {{-- <i class="fas fa-users-class"></i> --}}
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Course Management
               </p>
             </a>
           </li>

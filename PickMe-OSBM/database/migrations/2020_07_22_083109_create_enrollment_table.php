@@ -17,10 +17,10 @@ class CreateEnrollmentTable extends Migration
             $table->id();
             $table->integer('student_id');
             $table->integer('course_id');
-            $table->integer('enrolled_by');
-            $table->year('year');
-            $table->datetime('enrollement_date');
-            $table->integer('marks');
+            $table->integer('enrolled_by')->nullable();
+            $table->year('year')->nullable();
+            $table->datetime('enrollment_date')->nullable();
+            $table->integer('marks')->nullable();
             $table->timestamps();
         });
     }

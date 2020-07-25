@@ -21,7 +21,7 @@ class CreateStudentTable extends Migration
             // $table->date('dob')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->tinyInteger('is_verified')->default(1);
+            $table->tinyInteger('is_verified')->default(0);
             $table->tinyInteger('is_deleted')->default(0);
             $table->rememberToken();
             $table->timestamps();

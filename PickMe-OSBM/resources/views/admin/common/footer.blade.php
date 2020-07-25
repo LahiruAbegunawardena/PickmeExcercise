@@ -32,7 +32,7 @@
         <!-- AdminLTE for demo purposes -->
         <script src="{{ asset('/admin_lte/dist/js/demo.js') }}"></script>
         <script src="{{ asset('/js/global.js') }}"></script>
-
+        <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
     </body>
 </html>
 

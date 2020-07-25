@@ -77,7 +77,7 @@ class RegisterController extends Controller
                     'last_name' => $data['last_name'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
-                    'is_verified' => 1
+                    'is_verified' => 0
                 ]);
 
                 $accessToken = $newStudent->createToken('studentToken')->accessToken;
