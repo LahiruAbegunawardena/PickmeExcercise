@@ -21,7 +21,6 @@ class StudentController {
     }
 
     public function index(){
-
         $data['studentData'] = $this->studentService->allStudents();
         return view('admin.student.index', $data);
     }

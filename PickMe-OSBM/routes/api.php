@@ -14,10 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:student')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:student')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 // Route::POST('/admin/login', 'Auth\LoginController@adminLogin');
 Route::POST('/admin/register', 'Auth\RegisterController@registerAdmin');
-Route::POST('/student/register', 'Auth\RegisterController@register');
+Route::POST('/student/register', 'Api\StudentApiController@registerStudent');
 Route::POST('/student/login', 'Api\StudentApiController@studentLogin');
+
+Route::group([
+    'middleware' => 'student',
+    // 'prefix' => 'auth'
+], function ($router) {
+
+    Route::POST('student/logout', 'Api\StudentApiController@logout');
+    Route::GET('student/profile', 'Api\StudentApiController@profile');
+
+    // Routes for Authenticated Student
+
+});

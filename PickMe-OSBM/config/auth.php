@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'student',
         'passwords' => 'admin',
     ],
 
@@ -41,8 +41,9 @@ return [
             'provider' => 'admin',
         ],
         'student' => [
-            'driver' => 'passport',
-            'provider' => 'student'
+            'driver' => 'jwt',
+            'provider' => 'student',
+            'hash' => false,
         ],
         'api' => [
             // 'driver' => 'token',

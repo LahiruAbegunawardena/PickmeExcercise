@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
 use App\Admin;
 use App\Student;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
@@ -56,45 +56,6 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function register(Request $data)
-    {
-        try {
-            $validation = Validator::make($data->all(), [
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
-                'email' => 'required|email|unique:student',
-                'password' => 'required|string|min:8'
-            ]);
-            if($validation->fails()){
-                return response()->json([
-                    'message' => 'validation failed',
-                    'data' => $validation->errors()
-                ]); 
-            }
-            else{
-                $newStudent = Student::create([
-                    'first_name' => $data['first_name'],
-                    'last_name' => $data['last_name'],
-                    'email' => $data['email'],
-                    'password' => Hash::make($data['password']),
-                    'is_verified' => 0
-                ]);
-
-                $accessToken = $newStudent->createToken('studentToken')->accessToken;
-                return response()->json([
-                    'message' => 'Student registered successfully.',
-                    'accessToken' => $accessToken,
-                    'data' => $newStudent
-                ]);
-            }
-        } catch (QueryException $e){
-            return response()->json([
-                'message' => 'Exception Occured',
-                // 'http_code' => $e->getHttpCode(),
-                'data' => $e->getMessage()
-            ]);
-        }
-    }
 
     protected function registerAdmin(Request $data)
     {

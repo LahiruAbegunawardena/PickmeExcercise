@@ -71,11 +71,11 @@ class LoginController extends Controller
                 ]);
             } else {
                 $credentials = ['email'=> $request['email'], 'password' => $request['password']];
-                if(Auth::attempt($credentials)){
+                if(Auth::guard('web')->attempt($credentials)){
 
-                    $adminToken = Auth::user()->createToken('adminToken')->accessToken;
-                    $request->session()->put('adminToken', $adminToken);            
-                    $success['adminToken'] = $adminToken;
+                    // $adminToken = Auth::user()->createToken('adminToken')->accessToken;
+                    // $request->session()->put('adminToken', $adminToken);            
+                    // $success['adminToken'] = $adminToken;
                     return redirect()->intended('admin/students');
                    
                 } else {
