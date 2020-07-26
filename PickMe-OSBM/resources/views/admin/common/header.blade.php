@@ -24,28 +24,10 @@
     <div class="wrapper">
 
         @include('admin.common.sidebar')
-
-
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-
-            @if ($message = Session::get('success'))
-                <script>
-                    $(function () {
-                        successMessage('{{ $message }}');
-                    });
-                </script>
-
-            @endif
-            @if ($message = Session::get('info'))
-                <script>
-                    $(function () {
-                        errorMessage('{{ $message }}');
-                    });
-                </script>
-            @endif
-
+        <div class="content-wrapper"> 
+            <div class="container">
+                @include('admin.common.poppup-messages')
+            </div>
             @yield('content')
         </div>
 

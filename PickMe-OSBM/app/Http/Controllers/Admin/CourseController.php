@@ -6,6 +6,8 @@ use App\BO\Services\CourseService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use Session;
 
 class CourseController extends Controller {
 
@@ -17,7 +19,6 @@ class CourseController extends Controller {
     public function index(){
 
         $data['courseData'] = $this->courseService->allCourses();
-        // dd($data);
         return view('admin.course.index', $data);
     }
 

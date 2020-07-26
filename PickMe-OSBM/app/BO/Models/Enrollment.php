@@ -12,7 +12,7 @@ class Enrollment extends Model
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'student_id', 'course_id', 'enrolled_by', 'year', 'enrollement_date', 'marks'
+        'student_id', 'course_id', 'enrolled_by', 'year', 'enrollment_date', 'marks'
     ];
 
     /**

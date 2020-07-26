@@ -45,9 +45,9 @@
                 </thead>
 
                 <tbody>
-                  @foreach ($studentData as $student)
+                  @foreach ($studentData as $key => $student)
                     <tr>
-                      <td>{{$student->id}}</td>
+                      <td>{{$key + 1}}</td>
                       <td>{{$student->first_name}}</td>
                       <td>{{$student->last_name}}</td>
                       <td>{{$student->email}}</td>
@@ -73,6 +73,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>No of Courses</th>
                     <th>Verified Status</th>
                     <th>Action</th>
                   </tr>

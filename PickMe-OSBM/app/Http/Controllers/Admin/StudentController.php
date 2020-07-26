@@ -9,6 +9,8 @@ use Auth;
 use DateTime;
 use App\BO\Models\Enrollment;
 use App\BO\Models\Payment;
+use Carbon\Carbon;
+use Session;
 
 class StudentController {
 
@@ -30,7 +32,7 @@ class StudentController {
         if($verifyStatus){
             return redirect()->route('studentMgt')->with('success', 'Student verified..');
         } else {
-            return redirect()->route('studentMgt')->with('success', 'Student verification failed..');
+            return redirect()->route('studentMgt')->with('warning', 'Student verification failed..');
         }
     }
 
@@ -62,7 +64,7 @@ class StudentController {
             $enrollment[0]->update([
                 "year" => $request->year,
                 "enrolled_by" => Auth::user()->id,
-                "enrollment_date" => new DateTime('now'),
+                "enrollment_date" => Carbon::now(),
                 "marks" => null
             ]);
             Payment::create([

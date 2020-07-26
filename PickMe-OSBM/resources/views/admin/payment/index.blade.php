@@ -2,16 +2,17 @@
 
 @section('content')
 
+
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Course Management</h1>
+          <h1>Payment Management</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('studentMgt') }}">Home</a></li>
-            <li class="breadcrumb-item active">Students</li>
+            <li class="breadcrumb-item active">Payment Mgt</li>
           </ol>
         </div>
       </div>
@@ -26,14 +27,9 @@
           
           <div class="card">
             <div class="card-header">
-              
-              <div class="row">
-                <h3 class="card-title col-md-9">Course Details</h3>
-
-              <a href="{{ route('courseCreate')}}" class="col-md-3 btn btn-block bg-gradient-secondary"> Add Course </a>
-              </div>
-              
-
+                <div class="row">
+                    <h3 class="card-title col-md-9">Payment Details</h3>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -41,37 +37,38 @@
                 <thead>
                   <tr>
                     <th>#</th>
+                    <th>Student Name</th>
                     <th>Course Name</th>
-                    <th>Course Code</th>
-                    <th>No of Enrollments</th>
-                    <th>No of Credits</th>
-                    {{-- <th>Action</th> --}}
+                    <th>Enrolled date</th>
+                    <th>Paid / Not Paid</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  @foreach ($courseData as $key => $course)
+                  @foreach ($paymentData as $key => $payment)
                     <tr>
                       <td>{{$key + 1}}</td>
-                      <td>{{$course->course_name}}</td>
-                      <td>{{$course->course_code}}</td>
-                    <td>{{ count($course->students) }}</td>
-                      <td>{{$course->credits}}</td>
-                      {{-- <td>
-                        <a href="" class="btn btn-block bg-gradient-info btn-xs"> Edit </a>
-                        <a href="" class="btn btn-block bg-gradient-danger btn-xs"> Delete </a>
-                      </td> --}}
+                      <td>{{$payment->enrolledStudent}}</td>
+                      <td>{{$payment->enrolledCourse}}</td>
+                      <td>{{$payment->enrollment->enrollment_date}}</td>
+                      <td>{{$payment->paid_status}}</td>
+                      <td>
+                          @if ($payment->is_paid == 0)
+                      <a href="{{url('/admin/payments/'.$payment->id.'/fix')}}" class="btn btn-block bg-gradient-info btn-xs"> Pay </a>
+                          @endif
+                      </td>
                     </tr>
                   @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>#</th>
-                        <th>Course Name</th>
-                        <th>Course Code</th>
-                        <th>No of Enrollments</th>
-                        <th>No of Credits</th>
-                        {{-- <th>Action</th> --}}
+                      <th>#</th>
+                      <th>Student Name</th>
+                      <th>Course Name</th>
+                      <th>Enrolled date</th>
+                      <th>Paid / Not Paid</th>
+                      <th>Action</th>
                     </tr>
                 </tfoot>
               </table>

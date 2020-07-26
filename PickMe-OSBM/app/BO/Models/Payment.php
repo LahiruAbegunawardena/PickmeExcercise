@@ -3,7 +3,7 @@
 namespace App\BO\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\BO\Models\Enrollment;
 class Payment extends Model
 {
 
@@ -22,5 +22,10 @@ class Payment extends Model
     protected $hidden = [
         'created_at', 'updated_at',
     ];
+
+    public function enrollment()
+    {
+        return $this->belongsTo(Enrollment::class);
+    }
 
 }
