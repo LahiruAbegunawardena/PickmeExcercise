@@ -37,9 +37,11 @@ trait StudentTransformable
                 "course_name" => $course->course_name,
                 "credits" => $course->credits,
                 "course_fee" => $course->course_fee,
-                "course_year" => $course->pivot->year,
-                "enrolled_date" => $course->pivot->enrollment_date,
-                "course_marks" => isset($course->pivot->marks) ? $course->pivot->marks : "Not marked yet"
+                "enrollment_data" => [
+                    "course_year" => $course->pivot->year,
+                    "enrolled_date" => $course->pivot->enrollment_date,
+                    "course_marks" => isset($course->pivot->marks) ? $course->pivot->marks : "Not marked yet"
+                ]
             ];
         }
         return $returnData;

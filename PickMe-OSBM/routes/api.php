@@ -33,5 +33,6 @@ Route::middleware('auth:student')->group(function () {
     Route::GET('/student/profile', 'Api\StudentApiController@profile');
 
     Route::GET('/my-courses', 'Api\CourseApiController@getMyCourses');
+    Route::GET('/my-payments', 'Api\CourseApiController@getMyPayments');
 });
 

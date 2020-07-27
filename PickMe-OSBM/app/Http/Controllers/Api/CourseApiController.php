@@ -41,4 +41,21 @@ class CourseApiController {
             ]);
         }
     }
+
+    public function getMyPayments(){
+        try{
+            $user = Auth::user();
+            $courseList = $this->studentService->getPaymentListByStudentId($user->id);
+            return response()->json([
+                'status' => true,
+                'message' => 'Payment Deatails Recieved',
+                'data' => $courseList
+            ]);
+        } catch (Exception $ex){
+            return response()->json([
+                'message' => 'Exception Occured',
+                'data' => $ex->getMessage()
+            ]);
+        }
+    }
 }

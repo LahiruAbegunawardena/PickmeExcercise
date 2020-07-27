@@ -37,6 +37,6 @@ class Student extends Authenticatable implements JWTSubject
     // Many to Many ralationship with "Course" table and Creates "Enrollment" table
     public function courses()
     {
-        return $this->belongsToMany(Course::class, Enrollment::class)->withPivot('marks', 'year', 'enrollment_date');
+        return $this->belongsToMany(Course::class, Enrollment::class)->withPivot('id', 'marks', 'year', 'enrollment_date');
     }
 }
