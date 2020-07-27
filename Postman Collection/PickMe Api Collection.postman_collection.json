@@ -1,0 +1,157 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PickMe Api Collection",
+		"_postman_id": "e8aad666-9ad8-6128-7d09-1fb4259c4a44",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Student - without loggedIn",
+			"description": "",
+			"item": [
+				{
+					"name": "Student Registration",
+					"request": {
+						"url": "http://localhost:8000/api/student/register",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"first_name\": \"Lahiru\",\n\t\"last_name\": \"Abe\",\n\t\"email\": \"lahiru@gmail.com\",\n\t\"password\": \"12345678\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Student Login",
+					"request": {
+						"url": "http://localhost:8000/api/student/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "",
+								"value": "",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"lahiru@gmail.com\",\n\t\"password\": \"12345678\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LoggedIn Student",
+			"description": "",
+			"item": [
+				{
+					"name": "LoggedIn Student's profile",
+					"request": {
+						"url": "http://localhost:8000/api/student/profile",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{studentToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "LoggedIn Student's courses",
+					"request": {
+						"url": "http://localhost:8000/api/my-courses",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{studentToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "LoggedIn Student's Bills",
+					"request": {
+						"url": "http://localhost:8000/api/my-payments",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{studentToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "studentLogout",
+					"request": {
+						"url": "http://localhost:8000/api/student/logout",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{studentToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Registration",
+			"request": {
+				"url": "http://localhost:8000/api/admin/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"Admin\",\n\t\"last_name\": \"Kasun\",\n\t\"designation\": \"Admin\",\n\t\"email\": \"admin@gmail.com\",\n\t\"password\": \"admn1234\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

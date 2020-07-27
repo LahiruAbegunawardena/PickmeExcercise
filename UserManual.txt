@@ -1,0 +1,18 @@
+Admin Registration is provided through api -> http://localhost:8000/api/admin/register 
+You can find out w=example in given postman collection.
+
+Student can register -> http://localhost:8000/api/student/register
+Student can't login until admin verifies him.
+
+---------------------------------- Admin Login ----------------------------------
+Then After login to admin through web application you need to verify this student.
+Admin can add Courses and enroll students into it.
+Admin can check all payment data and settle them.
+
+
+
+----------------------------------- Api Login -----------------------------------
+Student Has to be logged in.
+Headers need to include Token assigned to Authorization field.
+Students can view his course details and PAyment history and Payments to be paid
+
