@@ -1,5 +1,19 @@
+-----------------------  Command Instructions  -----------------------  
+
+   1. cd PickMe-OSBM
+   2. composer update
+   3. npm install
+   4. create .env file and set values
+   5. php artisan key:generate
+   6. php artisan migrate
+   7. php artisan passport:install -> enter 1
+   8. php artisan jwt:secret
+   9. php artisan serve
+
+----------------------------------------------------------------------------------------
+
 Admin Registration is provided through api -> http://localhost:8000/api/admin/register 
-You can find out w=example in given postman collection.
+You can find out example in given postman collection.
 
 Student can register -> http://localhost:8000/api/student/register
 Student can't login until admin verifies him.
@@ -12,7 +26,7 @@ Admin can check all payment data and settle them.
 
 
 ----------------------------------- Api Login -----------------------------------
-Student Has to be logged in.
+Student need to be logged in.
 Headers need to include Token assigned to Authorization field.
 Students can view his course details and PAyment history and Payments to be paid
 
