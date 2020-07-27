@@ -26,7 +26,7 @@ class Course extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, Enrollment::class);
+        return $this->belongsToMany(Student::class, Enrollment::class)->withPivot('marks', 'year', 'enrollment_date');
     }
 
 }

@@ -48,6 +48,12 @@ class StudentController {
     public function enrollStudentToCourses(int $student_id){
         $data['studentData'] = $this->studentService->getStudentById($student_id);
         $data['courses'] = $this->courseService->allCourses();
+        $curYear = Carbon::now()->year;
+        $years= [];
+        for ($i=0; $i < 6; $i++) { 
+            $years[] = $curYear + $i;
+        }
+        $data['years'] = $years;
         // dd($data);
         return view('admin.student.enroll', $data);
     }
@@ -69,8 +75,9 @@ class StudentController {
             Payment::create([
                 "enrollment_id" => $enrollment[0]->id
             ]);
+            return redirect()->route('studentMgt')->with('success', 'Student enrollment completed..');
         }
-        return redirect()->route('studentMgt')->with('success', 'Student verification failed..');
+        return redirect()->route('studentMgt')->with('warning', 'Student enrollment failed..');
         
     }
 }

@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Exception;
 
 class StudentApiController {
-    public function __construct() {
-        $this->middleware('auth:student', ['except' => ['login', 'register']]);
-    }
+    // public function __construct() {
+        // $this->middleware('auth', ['except' => ['login', 'register']]);
+    // }
 
     public function registerStudent(Request $data)
     {
@@ -93,19 +94,30 @@ class StudentApiController {
     public function profile()
     {
         try {
-            
-            return response()->json(['user' => Auth::guard('student')->user]);
+            return response()->json(['user' => Auth::guard('student')->user()]);
         } catch (BindingResolutionException $ex){
-            dd($ex->getMessage());
+            
+            return response()->json([
+                "message" => "Exception occured",
+                "exception" => $ex->getMessage()
+            ]);
 
-        }catch (Exception $ex) {
-            dd($e->getMessage());
+        }catch (Exception $ex2) {
+            return response()->json([
+                "message" => "Exception occured",
+                "exception" => $ex2->getMessage()
+            ]);
         }
         
     }
 
     public function logout(){
-        auth()->logout();
-        return response()->json(['message' => 'Successfully logged out']);
+        try {
+            Auth::logout();
+            return response()->json(['message' => 'Successfully logged out']);
+        } catch (BindingResolutionException $ex){
+            dd($ex->getMessage());
+        }
+        
     }
 }

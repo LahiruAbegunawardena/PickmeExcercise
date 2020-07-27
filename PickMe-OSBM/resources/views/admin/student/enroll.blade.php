@@ -50,7 +50,12 @@
                       <div class="row">
                         <div class="form-group col-md-8">
                           <label for="year">Course Following Year</label>
-                          {!! Form::text('year', null, array('class' => 'form-control', 'required')) !!}
+                          <select id="year" name="year" class="form-control" required>
+                            @foreach ($years as $year)
+                              <option value="{{$year}}">{{$year}}</option>
+                            @endforeach
+                          </select>
+                          
                         </div>
                       </div>
 

@@ -36,4 +36,13 @@ class StudentService extends Service {
     public function deleteStudent(int $student_id){
         return  $this->studentRepo->deleteStudent($student_id);
     }
+
+    public function getCoursesByStudentId(int $student_id){
+        $student = $this->studentRepo->getStudentById($student_id);
+        if(isset($student->courses)){
+            return $this->transformStudentDetApi($student);
+        } else {
+            return null;
+        }
+    }
 }

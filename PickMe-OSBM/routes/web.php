@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(!Auth::guard('web')){
+        return view('welcome');
+    }
+    return redirect()->route('studentMgt');
+
 });
 
 // Auth::routes();
